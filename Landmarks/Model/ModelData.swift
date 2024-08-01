@@ -10,6 +10,10 @@ import Foundation
 @Observable
 class ModelData{
     var landmarks: [LandMark] = load("landmarkData.json")
+    
+    var category: [String: [LandMark]] {
+        Dictionary(grouping: landmarks, by: {$0.category.rawValue})
+    }
 }
 
 func load<T: Decodable> (_ filename: String) -> T {
